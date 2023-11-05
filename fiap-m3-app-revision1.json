@@ -1,5 +1,5 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-east-1:604623258149:task-definition/ecs-m3-task:1",
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:604623258149:task-definition/fiap-m3-app:1",
     "containerDefinitions": [
         {
             "name": "fiap-m3-app",
@@ -15,14 +15,51 @@
                 }
             ],
             "essential": true,
-            "environment": [],
+            "environment": [
+                {
+                    "name": "POSTGRES_USER",
+                    "value": "fiap"
+                },
+                {
+                    "name": "WEBHOOK_BASE_URL",
+                    "value": ""
+                },
+                {
+                    "name": "POSTGRES_HOST",
+                    "value": "m3-db.c10ffknjsfsb.us-east-1.rds.amazonaws.com"
+                },
+                {
+                    "name": "MERCADO_PAGO_USER_ID",
+                    "value": ""
+                },
+                {
+                    "name": "ENVIRONMENT",
+                    "value": "dev"
+                },
+                {
+                    "name": "POSTGRES_PASS",
+                    "value": "Fvb90aBTqMiB24vasviAv9OdgYXWBcuc"
+                },
+                {
+                    "name": "MERCADO_PAGO_ACCESS_TOKEN",
+                    "value": ""
+                },
+                {
+                    "name": "POSTGRES_DB",
+                    "value": "postgres"
+                },
+                {
+                    "name": "MERCADO_PAGO_EXTERNAL_POS_ID",
+                    "value": ""
+                }
+            ],
             "environmentFiles": [],
             "mountPoints": [],
             "volumesFrom": [],
             "ulimits": []
         }
     ],
-    "family": "ecs-m3-task",
+    "family": "fiap-m3-app",
     "taskRoleArn": "arn:aws:iam::604623258149:role/my-ecs-execution-role",
     "executionRoleArn": "arn:aws:iam::604623258149:role/my-ecs-execution-role",
     "networkMode": "awsvpc",
@@ -60,7 +97,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2023-11-05T20:49:01.516Z",
+    "registeredAt": "2023-11-05T21:54:25.446Z",
     "registeredBy": "arn:aws:iam::604623258149:root",
     "tags": []
 }
