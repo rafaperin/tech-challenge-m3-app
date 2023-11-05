@@ -60,7 +60,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Deploy to Amazon ECS
-        uses: ./aws-deploy.yml
+        uses: ./.github/workflows/aws-deploy.yml
 
   lint:
     runs-on: ubuntu-latest
