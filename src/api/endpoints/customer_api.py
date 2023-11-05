@@ -1,13 +1,14 @@
 import uuid
 from typing import Any
 
-from fastapi import APIRouter, status
+from fastapi import APIRouter, status, Depends
 
 from src.api.errors.api_errors import APIErrorMessage
 from src.config.errors import RepositoryError, ResourceNotFound
 from src.controllers.customer_controller import CustomerController
 from src.entities.schemas.customer_dto import CustomerDTOResponse, CreateCustomerDTO, \
     ChangeCustomerDTO, CustomerDTOListResponse
+from src.utils import utils
 
 router = APIRouter(tags=["Customers"])
 
@@ -16,6 +17,7 @@ router = APIRouter(tags=["Customers"])
     "/customers",
     response_model=CustomerDTOListResponse,
     status_code=status.HTTP_200_OK,
+    dependencies=[Depends(utils.verify_jwt)],
     responses={400: {"model": APIErrorMessage},
                404: {"model": APIErrorMessage},
                500: {"model": APIErrorMessage}}
@@ -33,6 +35,7 @@ async def get_all_customers() -> dict:
     "/customers/cpf/{cpf}",
     response_model=CustomerDTOResponse,
     status_code=status.HTTP_200_OK,
+    dependencies=[Depends(utils.verify_jwt)],
     responses={400: {"model": APIErrorMessage},
                404: {"model": APIErrorMessage},
                500: {"model": APIErrorMessage}}
@@ -54,6 +57,7 @@ async def get_customer_by_cpf(
     "/customers/id/{customer_id}",
     response_model=CustomerDTOResponse,
     status_code=status.HTTP_200_OK,
+    dependencies=[Depends(utils.verify_jwt)],
     responses={400: {"model": APIErrorMessage},
                404: {"model": APIErrorMessage},
                500: {"model": APIErrorMessage}}
@@ -95,6 +99,7 @@ async def create_customer(
     "/customers/{customer_id}",
     response_model=CustomerDTOResponse,
     status_code=status.HTTP_200_OK,
+    dependencies=[Depends(utils.verify_jwt)],
     responses={400: {"model": APIErrorMessage},
                404: {"model": APIErrorMessage},
                500: {"model": APIErrorMessage}}
@@ -115,6 +120,7 @@ async def change_customer_data(
 @router.delete(
     "/customers/{customer_id}",
     status_code=status.HTTP_200_OK,
+    dependencies=[Depends(utils.verify_jwt)],
     responses={400: {"model": APIErrorMessage},
                404: {"model": APIErrorMessage},
                500: {"model": APIErrorMessage}}

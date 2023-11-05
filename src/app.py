@@ -15,7 +15,7 @@ from src.config.errors import DomainError, ResourceNotFound, RepositoryError
 from src.utils import utils
 
 app = FastAPI()
-app.include_router(customers_router, dependencies=[Depends(utils.verify_jwt)])
+app.include_router(customers_router)
 app.include_router(products_router, dependencies=[Depends(utils.verify_jwt)])
 app.include_router(orders_router, dependencies=[Depends(utils.verify_jwt)])
 app.include_router(health_router, dependencies=[Depends(utils.verify_jwt)])
