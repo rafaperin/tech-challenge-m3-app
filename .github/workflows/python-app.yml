@@ -38,7 +38,7 @@ jobs:
       run: |
         pytest tests
 
-  sonarcloud:
+  quality-gate:
     runs-on: ubuntu-latest
     needs: [build, tests]
     steps:
