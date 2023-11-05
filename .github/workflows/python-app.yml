@@ -38,15 +38,19 @@ jobs:
       run: |
         pytest tests
 
-  quality-gate:
-      runs-on: ubuntu-latest
-      needs: [build, tests]
-      steps:
-        - name: SonarCloud Scan
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          run: sonar-scanner
+  sonarcloud:
+    runs-on: ubuntu-latest
+    needs: [build, tests]
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          # Disabling shallow clone is recommended for improving relevancy of reporting
+          fetch-depth: 0
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -60,7 +64,6 @@ jobs:
 
   lint:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.8
