@@ -14,7 +14,7 @@ env:
   ECR_REPOSITORY: ecr-modulo-3           # set this to your Amazon ECR repository name
   ECS_SERVICE: ecs-m3-service                 # set this to your Amazon ECS service name
   ECS_CLUSTER: cluster-ecs-m3                 # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: ecs-m3-task # set this to the path to your Amazon ECS task definition
+  ECS_TASK_DEFINITION: ./ecs-m3-task-revision1.json # set this to the path to your Amazon ECS task definition
                                                # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: fiap-m3-app           # set this to the name of the container in the
                                                # containerDefinitions section of your task definition
