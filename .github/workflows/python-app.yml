@@ -58,6 +58,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      
+      - name: Deploy to Amazon ECS
+        uses: ./aws-deploy
 
   lint:
     runs-on: ubuntu-latest
