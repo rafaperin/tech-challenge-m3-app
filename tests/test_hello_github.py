@@ -1,3 +1,3 @@
 def test_code_deploy():
-    # Boilerplate
+    # Boilerplate code
     assert True
